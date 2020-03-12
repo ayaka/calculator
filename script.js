@@ -3,6 +3,7 @@ const numBtns = document.querySelectorAll(".number");
 const opBtns = document.querySelectorAll(".operator");
 const equalBtn = document.querySelector(".equal");
 const clearBtn = document.querySelector(".clear");
+const backSpace = document.querySelector(".backspace");
 
 let num = ["", ""],
   op = [],
@@ -10,8 +11,7 @@ let num = ["", ""],
   numAside = "",
   opAside = "",
   result = null,
-  tempNum,
-  tempOp;
+  tempNum;
 
 function add(num1, num2) {
   return num1 + num2;
@@ -61,6 +61,7 @@ function clearValues() {
   deselectOpBtn();
   numAside = "";
   opAside = "";
+  tempNum = "";
 }
 
 function storeValues(e, i) {
@@ -188,9 +189,21 @@ opBtns.forEach(opBtn => {
 });
 
 equalBtn.addEventListener("click", () => {
-  num[1] = parseFloat(display.textContent);
+  if (!num[0]) {
+    return;
+  }
 
-  result = operate(op[0], num[0], num[1]);
+  if (op[1]) {
+    // take the display number to calculate if equal pressed right after operator.
+    tempNum = parseFloat(display.textContent);
+    console.log(num, op, numAside, opAside, displayValue, tempNum);
+    result = operate(op[0], num[0], num[1]);
+    result = operate(op[1], result, tempNum);
+  } else {
+    console.log(num, op, numAside, opAside, displayValue);
+    num[1] = parseFloat(display.textContent);
+    result = operate(op[0], num[0], num[1]);
+  }
   if (numAside) {
     result = operate(opAside, numAside, result);
   }
@@ -203,4 +216,17 @@ equalBtn.addEventListener("click", () => {
 clearBtn.addEventListener("click", () => {
   clearValues();
   display.textContent = "0";
+});
+
+backSpace.addEventListener("click", () => {
+  displayValue = displayValue.split("");
+  displayValue.pop();
+  displayValue = displayValue.join("");
+  console.log(typeof displayValue);
+
+  if (displayValue === "") {
+    updateDisplay(0);
+    return;
+  }
+  updateDisplay(displayValue);
 });
