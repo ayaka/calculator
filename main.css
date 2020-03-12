@@ -39,3 +39,6 @@ body {
 .zero {
   grid-area: 6/1/7/3;
 }
+.selected {
+  background-color: grey;
+}
