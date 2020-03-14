@@ -45,6 +45,7 @@ function operate(operator, num1, num2) {
 function updateDisplay(value) {
   display.textContent = value;
 }
+
 function deselectOpBtn() {
   opBtns.forEach(opBtn => {
     if (opBtn.classList.contains("selected")) {
@@ -110,7 +111,9 @@ numBtns.forEach(numBtn => {
         return;
       }
     }
-
+    if (displayValue.length === 18) {
+      return;
+    }
     displayValue += e.target.textContent;
     updateDisplay(displayValue);
     console.log(num, op, numAside, opAside, displayValue);
@@ -189,6 +192,8 @@ opBtns.forEach(opBtn => {
 });
 
 equalBtn.addEventListener("click", () => {
+  deselectOpBtn();
+  console.log(num, op, numAside, opAside, displayValue, tempNum);
   if (!num[0]) {
     return;
   }
@@ -208,7 +213,9 @@ equalBtn.addEventListener("click", () => {
     result = operate(opAside, numAside, result);
   }
   result = parseFloat(formatResult(result));
-
+  if (result.toString().length >= 18) {
+    result = "Error";
+  }
   updateDisplay(result);
   clearValues();
 });
@@ -219,11 +226,7 @@ clearBtn.addEventListener("click", () => {
 });
 
 backSpace.addEventListener("click", () => {
-  displayValue = displayValue.split("");
-  displayValue.pop();
-  displayValue = displayValue.join("");
-  console.log(typeof displayValue);
-
+  displayValue = displayValue.slice(0, displayValue.length - 1);
   if (displayValue === "") {
     updateDisplay(0);
     return;
