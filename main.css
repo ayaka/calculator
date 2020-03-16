@@ -3,14 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
-/* body {
-  display: flex;
-  justify-content: center;
-} */
-/* .container {
-  height: 70%;
-  width: 20%;
-} */
+body {
+  background: rgb(201, 218, 234, 0.5);
+}
 .calculator {
   margin: 4rem auto;
   padding: 2rem 1rem;
@@ -22,12 +17,12 @@
   text-align: center;
   background: #03254e;
   border-radius: 15px;
+  box-shadow: 10px 13px 10px #fcfff7;
 }
 .display,
 .btn {
   border: none;
   outline: none;
-  background: #d3d5d7;
   border-radius: 7px;
   font-size: 2rem;
   color: #011c27;
@@ -42,9 +37,9 @@
   background: #f8f8f8;
 }
 .btn {
+  background: #d3d5d7;
   justify-content: center;
   box-shadow: 0 4px #666;
-  transition: background 0.5s;
 }
 .btn:active {
   box-shadow: 0 2px #666;
@@ -53,10 +48,16 @@
 .number:hover {
   background: #e5fcff;
 }
+.changeNumBackground {
+  background: #e5fcff;
+}
 .clear:hover,
 .backspace:hover,
 .operator:hover,
 .equal:hover {
+  background: #7ea8be;
+}
+.changeBtnBackground {
   background: #7ea8be;
 }
 .clear {
