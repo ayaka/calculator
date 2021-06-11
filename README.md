@@ -1,7 +1,7 @@
 Calculator Project
-From the Odin Project [curriculum](https://www.theodinproject.com/courses/web-development-101/lessons/calculator?ref=lnav)
+From the Odin Project
 
-Finished Project Link - https://threeaces.github.io/calculator/
+Finished Project Link - https://ayaka.github.io/calculator/
 
 Keyboard 
 Delete -- AC
